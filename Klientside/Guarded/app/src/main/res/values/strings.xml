@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Guarded</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_child">ChildActivity</string>
+    <string name="title_activity_guardian">GuardianActivity</string>
+    <string name="title_activity_add_user">AddUserActivity</string>
+</resources>
