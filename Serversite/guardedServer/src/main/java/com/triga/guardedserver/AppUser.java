@@ -30,18 +30,18 @@ public class AppUser implements Serializable {
      String firstName;
      String lastName;
      String password;
-     Integer phonenumber;
+     Integer phoneNumber;
      String familyCode;
      Boolean guardian;
 
     public AppUser() {
     }
 
-    public AppUser(String firstName, String lastName, String password, Integer phonenumber, String familyCode, Boolean guardian) {
+    public AppUser(String firstName, String lastName, String password, Integer phoneNumber, String familyCode, Boolean guardian) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
         this.familyCode = familyCode;
         this.guardian = guardian;
     }

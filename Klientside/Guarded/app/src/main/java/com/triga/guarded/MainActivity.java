@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Intent i = new Intent(getApplicationContext(), AddUserActivity.class);
-        startActivity(i);
     }
 
     @Override

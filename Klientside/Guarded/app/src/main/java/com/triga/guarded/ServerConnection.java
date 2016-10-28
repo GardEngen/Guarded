@@ -2,9 +2,17 @@ package com.triga.guarded;
 
 import android.os.StrictMode;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Gard on 28.10.2016.
@@ -23,6 +31,7 @@ public class ServerConnection implements Serializable{
 
     }
 
+    //Add user to database
     public void addUserService (String firstName, String lastName, String password, Integer phonenumber, String familyCode, Boolean guardian)
     {
 
@@ -53,4 +62,43 @@ public class ServerConnection implements Serializable{
             e.printStackTrace();
         }
     }
+
+    //Get all AppUseres in database and return a List of all the AppUsers
+    public List<AppUser> getAllUsersService(){
+        String json = null;
+        try {
+            json = readUrl("http://" + ipAdress + ":8080/guardedServer/services/guarded/getall/appusers");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Type listType = new TypeToken<ArrayList<AppUser>>(){}.getType();
+        List<AppUser> appUsers = new Gson().fromJson(json, listType);
+
+        System.out.println("Appusers: "+ json);
+        System.out.println("HER ER MINE Appusers:: "+ appUsers);
+        return appUsers;
+
+    }
+
+
+    //read Url
+    private static String readUrl(String urlString) throws Exception {
+        BufferedReader reader = null;
+        try {
+            URL url = new URL(urlString);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer buffer = new StringBuffer();
+            int read;
+            char[] chars = new char[1024];
+            while ((read = reader.read(chars)) != -1)
+                buffer.append(chars, 0, read);
+
+            return buffer.toString();
+        } finally {
+            if (reader != null)
+                reader.close();
+        }
+    }
+
 }

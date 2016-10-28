@@ -5,6 +5,7 @@
  */
 package com.triga.guardedserver;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -43,4 +44,14 @@ public class GuardedService {
        em.persist(appUser);
     return appUser;
     }
+    
+    //returns all AppUsers in database
+    @GET
+    @Path("getall/appusers")
+    public List<AppUser> getAllAppUsers() {
+        List<AppUser> list = em.createQuery("SELECT a from AppUser a").getResultList();
+        return list;
+    } 
+            
+          
 }

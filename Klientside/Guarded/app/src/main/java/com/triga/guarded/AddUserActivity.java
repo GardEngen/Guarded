@@ -115,8 +115,10 @@ public class AddUserActivity extends AppCompatActivity {
                 //Creates a SHA1 Hash of password
                 String hashPassword = new String(Hex.encodeHex(DigestUtils.sha1(pString)));
 
+                //Add user to database
                 serverConnection.addUserService(fCodeString,lNString,hashPassword,pNString,fCodeString,isGuardian);
 
+                //Clear all text fields
                 familyCodeText.setText("");
                 firstNameText.setText("");
                 lastNameText.setText("");
@@ -130,6 +132,11 @@ public class AddUserActivity extends AppCompatActivity {
             {
                 Toast.makeText(this, "Your password do not match! try again", Toast.LENGTH_SHORT).show();
             }
+        }
+        else{
+
+            Toast.makeText(this, "Some of the input fields are missing informastion ", Toast.LENGTH_SHORT).show();
+
         }
 
 
