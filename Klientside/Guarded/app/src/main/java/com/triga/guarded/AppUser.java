@@ -1,7 +1,7 @@
 package com.triga.guarded;
 
 /**
- * Created by Gard and Trine!! on 27.10.2016.
+ * Created by Gard and Trine!! :) on 27.10.2016.
  */
 
 public class AppUser {
