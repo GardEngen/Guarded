@@ -8,15 +8,15 @@ public class AppUser {
     private String firstName;
     private String lastName;
     private String password;
-    private Integer phonenumber;
+    private Integer phoneNumber;
     private String familyCode;
     private Boolean guardian;
 
-    public AppUser(String firstName, String lastName, String password, Integer phonenumber, String familyCode, Boolean guardian) {
+    public AppUser(String firstName, String lastName, String password, Integer phoneNumber, String familyCode, Boolean guardian) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
         this.familyCode = familyCode;
         this.guardian = guardian;
     }
@@ -37,8 +37,8 @@ public class AppUser {
         return password;
     }
 
-    public Integer getPhonenumber() {
-        return phonenumber;
+    public Integer getphoneNumber() {
+        return phoneNumber;
     }
 
     public String getFamilyCode() {

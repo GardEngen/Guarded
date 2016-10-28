@@ -26,18 +26,20 @@ public class GuardedService {
     EntityManager em;
     
     
-    
+    //add a AppUser to database.
+    //URL: http://localhost:8080/guardedServer/services/guarded/add/appuser?firstName=Gard&lastName=Engen&password=123&phoneNumber=41761114&familyCode=skjer&guardian=true
     @GET
     @Path("add/appuser")
     public AppUser addAppUser(
             @QueryParam("firstName") String firstName,
             @QueryParam("lastName") String lastName,
             @QueryParam("password") String password,
-            @QueryParam("phonenumber") Integer phonenumber,
+            @QueryParam("phoneNumber") Integer phoneNumber,
             @QueryParam("familyCode") String familyCode,
             @QueryParam("guardian") Boolean guardian)
+            
     {
-    AppUser appUser = new AppUser(firstName,lastName,password,phonenumber,familyCode,guardian);
+    AppUser appUser = new AppUser(firstName,lastName,password,phoneNumber,familyCode,guardian);
        em.persist(appUser);
     return appUser;
     }

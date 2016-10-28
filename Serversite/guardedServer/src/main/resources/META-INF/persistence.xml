@@ -3,7 +3,7 @@
   <persistence-unit name="com.triga_guardedServer_war_1.0-SNAPSHOTPU" transaction-type="JTA">
     <jta-data-source>jdbc/triga</jta-data-source>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
 </persistence>

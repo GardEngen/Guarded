@@ -1,6 +1,7 @@
 package com.triga.guarded;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,9 +16,6 @@ import android.widget.Toast;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 
 public class AddUserActivity extends AppCompatActivity {
 
@@ -31,12 +29,15 @@ public class AddUserActivity extends AppCompatActivity {
     private EditText passwordText;
     private EditText repeatPasswordText;
 
+    private ServerConnection serverConnection;
+
     private Boolean isGuardian;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,6 +52,7 @@ public class AddUserActivity extends AppCompatActivity {
 
         //variables
         this.isGuardian = true;
+        this.serverConnection = new ServerConnection();
 
         //Text fields
         this.familyCodeText = (EditText) findViewById(R.id.familyCodeText);
@@ -98,7 +100,7 @@ public class AddUserActivity extends AppCompatActivity {
         String fCodeString = familyCodeText.getText().toString();
         String fNString = firstNameText.getText().toString();
         String lNString = lastNameText.getText().toString();
-        String pNString = phoneNumberText.getText().toString();
+        Integer pNString = Integer.parseInt(phoneNumberText.getText().toString());
         String pString = passwordText.getText().toString();
         String rPString = repeatPasswordText.getText().toString();
 
@@ -108,13 +110,12 @@ public class AddUserActivity extends AppCompatActivity {
 
             //check if password match repeatPassword
             if ((pString.equals(rPString))) {
-                System.out.println(isGuardian);
+
 
                 //Creates a SHA1 Hash of password
                 String hashPassword = new String(Hex.encodeHex(DigestUtils.sha1(pString)));
 
-                System.out.println(" familyCodeText: "+fCodeString+" firstNameText: "+fNString+" lastNameText: "+lNString+" phoneNumberText: "
-                        +pNString+ " passwordText: " +hashPassword+" repeatPasswordText: "+rPString+" isGuardian: "+isGuardian);
+                serverConnection.addUserService(fCodeString,lNString,hashPassword,pNString,fCodeString,isGuardian);
 
                 familyCodeText.setText("");
                 firstNameText.setText("");
